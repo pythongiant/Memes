@@ -1,0 +1,52 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>The Meme store</title>
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster" />
+    <!-- Latest compiled and minified CSS -->
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <style>
+        html,
+        body {
+            background-color: black !important;
+            
+        }
+            img:hover {
+            transition: all .2s ease-in-out;
+            transform: scale(1.2);
+        }
+        h1{font-family: 'Lobster', 'sans-serif' !important;color:white}
+        .memes {
+            padding-left: 5px;
+            display: inline-block !important;
+        }
+    </style>
+</head>
+
+<body>
+     <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{%url 'memes_home'%}">Memes Store</a>
+                <a class="navbar-brand" href="/gif/">GIF store</a>
+            </div>
+        </div>
+    </nav>
+    {%for i in all_memes%}
+    <div class="memes">
+        <a href="{%url 'meme_detail' i.id%}"><img style="width:150px;height:150px;" src="{{i.photo_link}}" /></a>
+
+    </div>
+
+    {%endfor%}
+<center><h1>You want it. we have it!</h1></center>
+
+
+</body>
+
+</html>

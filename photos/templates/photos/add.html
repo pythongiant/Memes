@@ -1,0 +1,15 @@
+<!DOCTYPE>
+<html>
+    <body>
+       <form action={% url 'add' %} method="POST">
+           {% csrf_token %}
+   <div style="padding-bottom: 10px;" >
+       {% if Login.errors %}
+           The errors are: <span>{{ Login.errors }}</span>
+       {% endif %}
+       <span>{{ Login }}</span>
+   </div>
+   <br/>
+   <input type="submit" value="Submit" />
+    </body>
+</html>

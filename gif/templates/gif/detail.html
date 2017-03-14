@@ -1,0 +1,65 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>The GIF store</title>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster" />
+    <!-- Latest compiled and minified CSS -->
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <style>
+      body,
+        html
+    {
+        
+            color: white !important;
+            background-color: black !important;
+        }
+        h1,h4,form{
+            font-family: 'Lobster' !important;
+        }
+       
+         form{padding: 10px;}
+        input{
+            display:block;
+            color:black;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{%url 'gif'%}">GIF store</a>
+                <a class="navbar-brand" href="/photos/memes.html">Meme store</a>
+            </div>
+        </div>
+    </nav>
+    <center>
+        <h1>{{description}}</h1></center>
+    <center>
+        <h4>{{name}}</h4></center>
+    <center><a style="text-align:left;width:20%;" href="/gif/{{minus1}}">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a><img src="{{photo}}" /><a style="text-align:left;width:20%;" href="/gif/{{plus1}}">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+        <form action="#" method="POST">  
+           {% csrf_token %}
+           <div  style="padding-bottom: 10px;" > <span>{{form}}</span></div>
+          
+           <br/>
+             <input  type="submit" value="Submit" />
+       </form>
+       {%for i in comment%}
+       {%if i.Memetitle|lower == description|lower%}
+       <p>{{i.name}}-{{i.comment}}</p>
+       {%endif%} 
+       {%endfor%}
+       </center>
+</body>
+
+</html>
