@@ -36,6 +36,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="{%url 'memes_home'%}">Memes Store</a>
                 <a class="navbar-brand" href="/gif/">GIF store</a>
+                <a class="navbar-brand" href="/photos/addmeme">Add your memes</a>
             </div>
         </div>
     </nav>
@@ -44,10 +45,13 @@
         <h4>{{name}}</h4></center>
     <center><a style="text-align:left;width:20%;" href="/photos/{{minus1}}">
           <span class="glyphicon glyphicon-chevron-left"></span>
-        </a><img src="{{photo}}" /><a style="text-align:left;width:20%;" href="/photos/{{plus1}}">
+        </a>
+        {%load static%}
+        <img src="{%static  photo%}" /><a style="text-align:left;width:20%;" href="/photos/{{plus1}}">
           <span class="glyphicon glyphicon-chevron-right"></span>
         </a></center>
        <center>
+           {% if user.is_authenticated %}
            <form action="#" method="POST">  
            {% csrf_token %}
            <div  style="padding-bottom: 10px;" > <span>{{form}}</span></div>
@@ -55,6 +59,7 @@
            <br/>
              <input  type="submit" value="Submit" />
        </form>
+       {% endif %}
        {%for i in comment%}
        {%if i.Memetitle|lower == description|lower%}
        <p>{{i.name}}-{{i.comment}}</p>

@@ -34,13 +34,15 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="{%url 'memes_home'%}">Memes Store</a>
                 <a class="navbar-brand" href="/gif/">GIF store</a>
+                <a class="navbar-brand" href="/photos/addmeme">Add your memes</a>
             </div>
         </div>
     </nav>
     {%for i in all_memes%}
     <div class="memes">
-        <a href="{%url 'meme_detail' i.id%}"><img style="width:150px;height:150px;" src="{{i.photo_link}}" /></a>
-
+        {%load static%}
+        <a href="{%url 'meme_detail' i.id%}"><img style="width:150px;height:150px;" src="{%static  i.photo_link%}" /></a>
+        
     </div>
 
     {%endfor%}

@@ -1,29 +1,45 @@
+"""
+Author:Srihari Unnikrishnan
+Country:India,
+City: New Delhi,
+State:New Delhi,
+Github Username : Pythongiant,
+Framework:Django,
+Language:Python,
+Project Name: Meme Site
+We most probably handle all the forms in the same way so hust to clarify stuff I wrote comments in the first form handel
+"""
 #import our libraries
-from .models import Memes,Comment#import the memes and the comments
+from .models import *#import the memes and the comments
 from django.shortcuts import render,get_object_or_404,redirect#import some shortcuts
-from .forms import PostForm,Add,Authenticate#import the form model
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login,logout
-
+from .forms import * #import the form model
+from django.contrib.auth.models import User #Import the User module
+from django.contrib.auth import authenticate,login,logout#import some more stuff
+from django.contrib.auth.decorators import login_required
 #render the index page
 
 def index(request):
     return render(request,"photos/index.html",{})
-    
+@login_required    
 def detail(request,meme_id):
     #get the memes
      memes=get_object_or_404(Memes,pk=meme_id)
-
+     #check if the request made is POST
      if request.method=="POST":
+         
          form=PostForm(request.POST)#populate
+         #Check if the form is valid
          if form.is_valid():
+             #fill data into the model and the form
              comment=form.cleaned_data['comment']#add the data from the comment 
              name=request.user.username 
              meme_title=memes.description
-             Thecomment=Comment.objects.create(name=name,comment=comment,Memetitle=meme_title)#make a new instance of the model
-             Thecomment.save()
+             Comment.objects.create(name=name,comment=comment,Memetitle=meme_title)#make a new instance of the model
+             
      else:
-            form = PostForm()        
+            #Since it is a GET request populate it with empty Data
+            form = PostForm()
+     #get all the data for further processing in the renderd HTML file                    
      All_comments=Comment.objects.all()
 #the contexts, pretty straightforward
      context={
@@ -64,6 +80,7 @@ def AddUser(request):
             username = form.cleaned_data['Username']
             password = form.cleaned_data['Password']
             email=form.cleaned_data['Email']
+            
             user = User.objects.create_user(username, email, password)
             
     return redirect("/photos/login")              
@@ -78,14 +95,28 @@ def AuthenticateUser(request):
             if user is not None:
                 login(request,user)
                 return redirect('/photos/')
-
+            else:
+                return render(request,"photos/invalid.html",{})
 
 def LoginForm(request):
     form=Authenticate()
-    return render(request, 'photos/login.html', {'Login': form})
+    return render(request, 'photos/login.html', {'Login': form})      
 
+#The following functions allow users to post their own memes
+@login_required
+def YourMeme(request):
+    form=UserMeme()
+    if request.method == 'POST':
+        form = UserMeme(request.POST, request.FILES)
+        if form.is_valid():
+            meme =request.FILES["meme"]
+            joker=request.user.username
+            description=request.POST["title"]
+            Memes.objects.create(joker=joker,photo_link=meme,description=description)
             
+    else:
+        form = UserMeme()
+
+    return render(request,'photos/usermeme.html',{'form':form,'hi':request.user.username})
     
 
-
-    

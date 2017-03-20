@@ -1,15 +1,37 @@
 <!DOCTYPE>
 <html>
-    <body>
-       <form action={% url 'add' %} method="POST">
-           {% csrf_token %}
-   <div style="padding-bottom: 10px;" >
-       {% if Login.errors %}
-           The errors are: <span>{{ Login.errors }}</span>
-       {% endif %}
-       <span>{{ Login }}</span>
-   </div>
-   <br/>
-   <input type="submit" value="Submit" />
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        input {
+            display: block
+        }
+        
+        H1 {
+            padding-bottom: 15px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <center>
+        <h1>Fill the Form below and you will be added </h1>
+        <form action={% url 'add' %} method="POST">
+            {% csrf_token %}
+            <div style="padding-bottom: 10px;">
+                {% if Login.errors %} The errors are: <span>{{ Login.errors }}</span> {% endif %}
+                <span>{{ Login }}</span>
+            </div>
+            <br/>
+            <input type="submit" value="Submit" />
+        </form>
+    </center>
+</body>
+
 </html>

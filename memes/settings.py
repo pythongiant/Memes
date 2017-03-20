@@ -25,7 +25,7 @@ SECRET_KEY = '&*nw4#jbgx-v#u@mxh(@&$_9fhfhi+3%y=(8qqrc@_^#(*vgxh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.255','192.168.1.37','192.168.1.34', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*','192.168.1.255','192.168.1.37','192.168.1.35', 'localhost', '127.0.0.1','192.168.0.101']
 
 # Application definition
 
@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -115,7 +115,10 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/photos/static/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'photos/static')
+STATIC_ROOT="/photos/static/"
