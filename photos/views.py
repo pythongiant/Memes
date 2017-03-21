@@ -20,7 +20,7 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request,"photos/index.html",{})
-@login_required    
+ 
 def detail(request,meme_id):
     #get the memes
      memes=get_object_or_404(Memes,pk=meme_id)
@@ -51,6 +51,7 @@ def detail(request,meme_id):
          "meme_id":meme_id,
          "form":form,
          "comment":All_comments,
+         "hi":request.user.username
          }
    
      return render(request,"photos/detail.html",context)
@@ -66,7 +67,7 @@ def PageMoreRedirect(request):
 #context for the main meme page
 def memesPage(request):
     all_memes=Memes.objects.all()
-    context={"all_memes":all_memes}
+    context={"all_memes":all_memes,"hi":request.user.username}
     return render(request,"photos/meme.html",context)  
      
 def AddUserForm(request):
@@ -94,7 +95,7 @@ def AuthenticateUser(request):
             user=authenticate(username=username,password=password)        
             if user is not None:
                 login(request,user)
-                return redirect('/photos/')
+                return redirect('/photos/memes.html')
             else:
                 return render(request,"photos/invalid.html",{})
 
@@ -103,7 +104,7 @@ def LoginForm(request):
     return render(request, 'photos/login.html', {'Login': form})      
 
 #The following functions allow users to post their own memes
-@login_required
+
 def YourMeme(request):
     form=UserMeme()
     if request.method == 'POST':
@@ -113,10 +114,15 @@ def YourMeme(request):
             joker=request.user.username
             description=request.POST["title"]
             Memes.objects.create(joker=joker,photo_link=meme,description=description)
-            
+            return redirect("/photos/memes.html/")
     else:
         form = UserMeme()
 
     return render(request,'photos/usermeme.html',{'form':form,'hi':request.user.username})
     
+def logoutUser(request):
+    logout(request)
+    return redirect("/photos/login/")
 
+def PageFRedirect(request):
+    return redirect("/photos/36")

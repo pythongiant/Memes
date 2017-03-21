@@ -3,43 +3,79 @@
 
 <head>
     <title>Welecome to the Meme Store</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400i" rel="stylesheet">  
+    
+    {%load static%}
     <style>
-        body,
-        html {
-            font-family: 'Roboto', 'sans-serif';
-            font-size: 50px;
-            color: white;
-            background-color: black;
-        }
-        
-        h3 {
-            display: none;
-        }
-        
-        a {
-            text-decoration: none;
-            color: yellow;
-        }
+     body, html {
+         font-family: 'Roboto';
+    height: 100%;
+    margin: 0;
+}
+
+#Start {
+    /* The image used */
+    background-image: url("{%static 'uploaded_files/bg.jpg'%}");
+    
+        color: white;
+    
+     
+     height: 100%;
+    
+     
+     display: flex;
+     align-items: center;
+     justify-content: center;
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+h1{
+    font-size:200%
+}
+#Start-Center{
+    background-color:rgba(211,211,211,0.5);
+    border-radius: 25px;
+    font-family: 'Open Sans';
+}
+#dont{
+    font-family: 'Indie Flower';
+    width:375px;
+    margin-left:10px;
+    padding-right:150px;
+    padding-left:25%;
+}
+.inline{
+    float: left;
+    }
+img{
+    padding-top:30px;
+}
+a{
+    text-decoration: none;
+}
     </style>
-    <script>
-        $(document).ready(function () {
-            $('h3').fadeIn(2200);
-            });
-    </script>
 </head>
 
 <body>
-    <center>
+            <div id="Start">
+                <div id="Start-Center">
+    <h1><center>&nbsp Crack Your Ribs</center> <br>&nbsp Laughing Every Day With Our Memes &nbsp </h1> 
 
-        <h3><p>Welcome to the Meme Store</p></h3>
-        <h6><p>Click <A href="/photos/memes.html">here </A>to get started</p></h6>
-    </center>
+    </div>
+</div>
+     <div class="inline" id="dont"><h1>Dont be like the Cat</h1><p>Dont be like the Grumpy Cat. Have Some Fun and watch all those funny GIFs and Memes with your friends.<strong><a href="/photos/memes"> Let's Go!</a></strong></p></div>
+     <div class="inline" id="grumpy"><img style="width:200px;height:200px;" src="{%static 'uploaded_files/35.jpg'%}"/></div>
+     <br class="clearBoth" />
 </body>
 
 </html>

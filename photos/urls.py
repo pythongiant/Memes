@@ -23,6 +23,7 @@ urlpatterns=[
     url(r'^memes',views.memesPage,name="memes_home"),
     #photos/memes/0(redirects to photos/memes/Memes.objects.count()+1)
     url(r'^0',views.PageRedirect,name="redirect"),
+   
     #photos/number of memes+1 (redirects to photos/1)
     url(r'^'+str(Memes.objects.count()+1),views.PageMoreRedirect,name="more_redirect"),
     #photos/memes/meme_id[Decimals]
@@ -37,4 +38,6 @@ urlpatterns=[
     url(r'^auth',views.AuthenticateUser,name="auth"),
     #Form Url for user to upload a meme
     url(r'^addmeme',views.YourMeme),
+    #logout User
+    url(r'^logout',views.logoutUser,name="logout"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 

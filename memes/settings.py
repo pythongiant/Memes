@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['*','192.168.1.255','192.168.1.37','192.168.1.35', 'localhost',
 
 INSTALLED_APPS = [
     'photos.apps.PhotosConfig',
-    'gif.apps.GifConfig',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
